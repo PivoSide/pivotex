@@ -67,7 +67,7 @@ When in doubt: open an issue and ask before writing the code.
 PIVOTEX has **no dependencies**. Just clone and edit.
 
 ```bash
-git clone https://github.com/<your-fork>/pivotex.git
+git clone https://github.com/PivoSide/pivotex.git
 cd pivotex
 git checkout -b your-feature-branch
 ```
@@ -84,6 +84,8 @@ This repo can be in one of two states:
 |---|---|---|---|
 | **Maintainer mode** (template repo, default) | Tells the agent: "you're maintaining the template, do NOT run onboarding or write to memory regions" | Contributors editing PIVOTEX itself | Behaves as a normal coding agent |
 | **Brain mode** (after `init-brain.sh`) | Tells the agent: "you're operating a brain, follow `BRAIN.md`" | End users who cloned the template and ran init | Runs onboarding, logs to hippocampus, routes inputs |
+
+> **Gemini CLI note:** `GEMINI.md` follows the same two-mode split. The maintainer-mode root `GEMINI.md` does not exist (Gemini CLI won't pick anything up). The brain-mode version is placed at the root by `init-brain.sh` / `init-brain.ps1` from `templates/brain-mode/GEMINI.md`. The stub for pointing other projects at the brain lives in `stubs/GEMINI.md`.
 
 **As a contributor, you're in maintainer mode.** Do *not* run `init-brain.sh` on your fork — that converts the template into a brain. If you accidentally run it, restore from git.
 

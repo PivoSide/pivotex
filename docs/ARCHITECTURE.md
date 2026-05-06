@@ -139,7 +139,7 @@ The init script and the test runners are the only executable surface — both ar
 
 ## Cross-platform contract
 
-PIVOTEX must work in **any agent** (Claude Code, Cursor, Codex/Copilot, ChatGPT-with-files, OpenAI API, Aider, custom):
+PIVOTEX must work in **any agent** (Claude Code, Gemini CLI, Cursor, Codex/Copilot, ChatGPT-with-files, OpenAI API, Aider, custom):
 
 1. **Plain files only** — markdown for content; SQLite optional later for indexing.
 2. **One bootstrap, one path** — `BRAIN.md` at root. Every tool's stub points at it.

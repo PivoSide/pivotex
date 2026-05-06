@@ -80,7 +80,7 @@ The init script does this in one shot — no per-step prompts, just one confirma
 claude
 ```
 
-Say hi. The brain-mode `CLAUDE.md` tells the agent to read `BRAIN.md`, see `limbic/user.md` has `Status: needs-setup`, and run the **Onboarding flow**:
+Say hi. The brain-mode `CLAUDE.md` / `GEMINI.md` tells the agent to read `BRAIN.md`, see `limbic/user.md` has `Status: needs-setup`, and run the **Onboarding flow**:
 
 > *"This is your first session in this PIVOTEX brain. Let me ask a few questions so I can remember who you are across sessions."*
 
@@ -105,6 +105,7 @@ To point a *different project's* folder at this brain (so the brain follows you 
 ```bash
 # Inside the other project:
 cp <brain-root>/stubs/CLAUDE.md      ./CLAUDE.md
+cp <brain-root>/stubs/GEMINI.md      ./GEMINI.md
 cp <brain-root>/stubs/.cursorrules   ./.cursorrules
 cp <brain-root>/stubs/AGENTS.md      ./AGENTS.md
 # Then replace <BRAIN_ROOT> in each stub with the absolute path to your brain folder.
@@ -160,6 +161,7 @@ The brain lives in one folder. Every tool gets a tiny stub pointing there.
 | Tool | Where the stub goes | File |
 |---|---|---|
 | Claude Code | `<project>/CLAUDE.md` (or global) | `stubs/CLAUDE.md` |
+| Gemini CLI | `<project>/GEMINI.md` | `stubs/GEMINI.md` |
 | Cursor | `<project>/.cursorrules` | `stubs/.cursorrules` |
 | Codex CLI / Copilot agents | `<project>/AGENTS.md` | `stubs/AGENTS.md` |
 | OpenAI API / custom agent | system prompt | `stubs/system-prompt.txt` |

@@ -220,6 +220,7 @@ Pages expected to grow past 250 lines (e.g., a cortex concept that accumulates m
 ## Cross-platform usage
 This brain is tool-agnostic. Each tool gets a 3-line stub pointing here. See `stubs/`.
 - Claude Code: copy `stubs/CLAUDE.md` into any project.
+- Gemini CLI: copy `stubs/GEMINI.md` into any project.
 - Cursor: copy `stubs/.cursorrules`.
 - Codex / Copilot: copy `stubs/AGENTS.md`.
 - API or custom agent: paste `stubs/system-prompt.txt` into the system prompt.

@@ -3,7 +3,7 @@
 # One-time use. Self-deletes on success.
 #
 # What this does (no prompts — fully deterministic):
-#   - Replaces root CLAUDE.md, .cursorrules, AGENTS.md with brain-mode versions
+#   - Replaces root CLAUDE.md, .cursorrules, AGENTS.md, GEMINI.md with brain-mode versions
 #   - Replaces README.md with the brain-mode user-facing version
 #   - Sets the brain root path in BRAIN.md
 #   - Removes ALL maintainer-only artifacts: tests/, docs/, CONTRIBUTING.md, templates/
@@ -22,7 +22,7 @@ cat <<EOF
 This will convert this folder into your personal PIVOTEX brain.
 
 This action will:
-  - Replace CLAUDE.md, .cursorrules, AGENTS.md, README.md with brain-mode versions
+  - Replace CLAUDE.md, .cursorrules, AGENTS.md, GEMINI.md, README.md with brain-mode versions
   - Set the brain root path in BRAIN.md
   - REMOVE: tests/, docs/, CONTRIBUTING.md, templates/, init-brain.{sh,ps1}
   - RESET git history (single "Initial brain commit")
@@ -48,6 +48,7 @@ echo "-> Replacing root agent-config files with brain-mode versions..."
 cp -f "$HERE/templates/brain-mode/CLAUDE.md"     "$HERE/CLAUDE.md"
 cp -f "$HERE/templates/brain-mode/.cursorrules"  "$HERE/.cursorrules"
 cp -f "$HERE/templates/brain-mode/AGENTS.md"     "$HERE/AGENTS.md"
+cp -f "$HERE/templates/brain-mode/GEMINI.md"     "$HERE/GEMINI.md"
 cp -f "$HERE/templates/brain-mode/README.md"     "$HERE/README.md"
 
 echo "-> Setting brain root path in BRAIN.md..."
@@ -82,7 +83,7 @@ cat <<EOF
 =========================================================
 
 Next steps:
-  1. Open Claude Code (or Cursor / Codex) in this folder.
+  1. Open Claude Code, Gemini CLI, Cursor, or Codex in this folder.
   2. Say hi. The agent will run the Onboarding flow defined in BRAIN.md.
 
 EOF
