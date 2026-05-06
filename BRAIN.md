@@ -125,11 +125,7 @@ Pull protocol updates from upstream into this brain without touching user data.
 
 1. Confirm with user: *"I'll fetch the latest PIVOTEX protocol and update protocol files here. Your data (`hippocampus/`, `cortex/`, `limbic/`, `sources/`, `dreams/`, `salience.md`) will not be touched. Continue? [y/N]"*
 2. **Working-tree check:** if `git status` shows uncommitted changes, ask user to stash or commit first; do not proceed.
-3. **Ensure upstream remote:**
-   ```
-   git remote get-url upstream 2>/dev/null \
-     || git remote add upstream https://github.com/pivoside/pivotex.git
-   ```
+3. **Ensure upstream remote:** run `git remote get-url upstream` — if it fails or is missing, run `git remote add upstream https://github.com/pivoside/pivotex.git`.
 4. **Fetch:** `git fetch upstream main`.
 5. **Read versions:** local `VERSION` (treat missing as `unknown`) and `git show upstream/main:VERSION`.
 6. **Show what would change:**
@@ -138,9 +134,9 @@ Pull protocol updates from upstream into this brain without touching user data.
    ```
 7. **BRAIN.md surgical merge:**
    a. Extract user's Identity block from local `BRAIN.md` — lines from `## Identity` up to (but not including) the next `## ` header.
-   b. Pull upstream `BRAIN.md` to a temp file: `git show upstream/main:BRAIN.md > /tmp/upstream-BRAIN.md`.
-   c. In the temp file, replace the `## Identity` block (same delimiter rule) with the user's preserved one.
-   d. Move temp over local: `mv /tmp/upstream-BRAIN.md BRAIN.md`.
+   b. Read upstream `BRAIN.md` content via `git show upstream/main:BRAIN.md`.
+   c. In the fetched content, replace the `## Identity` block (same delimiter rule) with the user's preserved one.
+   d. Write the merged result over local `BRAIN.md`.
 8. **Wholly-replaceable protocol files** (no user customization expected by design):
    ```
    git checkout upstream/main -- CLAUDE.md .cursorrules AGENTS.md stubs/ VERSION
@@ -151,7 +147,7 @@ Pull protocol updates from upstream into this brain without touching user data.
 10. **Stage and review:** `git add -A` then show `git diff --staged` to the user.
 11. **Log to hippocampus:** append a one-line entry to `hippocampus/<today>.md`: *"Updated PIVOTEX protocol `<old-version>` → `<new-version>`. Files: `<list>`."*
 12. **On user confirmation:** `git commit -m "Update PIVOTEX protocol to <new-version>"`.
-    **On rejection:** `git restore --staged . && git checkout -- .` (unstage and discard).
+    **On rejection:** run `git restore --staged .` then `git checkout -- .` (unstage and discard).
 
 ## Conventions
 - **Cross-references:** `[[cortex/concepts/x.md]]` — works as link and prose.

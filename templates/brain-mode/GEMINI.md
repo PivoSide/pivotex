@@ -8,6 +8,13 @@ If `limbic/user.md` contains `Status: needs-setup`, run the **Onboarding flow** 
 
 After onboarding (or on every subsequent session), follow the standard Startup ritual in `BRAIN.md`.
 
+## Shell commands
+Detect the platform before running any shell command and adapt accordingly:
+- **Windows (PowerShell 5.1):** use `;` instead of `&&`; use `if (-not $?) { ... }` instead of `||`; omit `2>/dev/null` or replace with `-ErrorAction SilentlyContinue`; use `$env:TEMP` instead of `/tmp`.
+- **macOS / Linux (bash/zsh):** standard POSIX syntax works as written.
+- Pure git commands work unchanged on all platforms.
+Run each command as a separate step when in doubt — never assume `&&` works.
+
 ## Operations
 When the user's intent matches, proactively offer or run the relevant operation. Full instructions are in `BRAIN.md`.
 
