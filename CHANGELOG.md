@@ -8,6 +8,17 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html):
 
 ---
 
+## [1.2.0] — 2026-05-06
+
+### Changed
+- **`/pivotex-update` is now hybrid** — deterministic git operations moved into `update-brain.sh` / `update-brain.ps1` (cross-platform scripts); LLM retains only the `BRAIN.md` text merge. Eliminates PowerShell/bash errors from LLM-generated shell commands.
+
+### Added
+- `update-brain.sh` — bash script for the deterministic phase of `/pivotex-update`: working-tree check, upstream remote, fetch, version diff, protocol file checkout, `.claude/commands/` install, staging.
+- `update-brain.ps1` — PowerShell equivalent, fully PowerShell 5.1 compatible.
+
+---
+
 ## [1.1.0] — 2026-05-06
 
 ### Added

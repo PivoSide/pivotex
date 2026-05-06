@@ -119,36 +119,27 @@ Output goes to today's hippocampus entry.
 Intentional removal. Move the file to `archive/forgotten/`. Leave a one-line tombstone in the original location: `Forgotten YYYY-MM-DD — see archive/forgotten/<file>`.
 
 ### `/pivotex-update`
-Pull protocol updates from upstream into this brain without touching user data.
+Pull protocol updates from upstream. Hybrid approach: deterministic script for git operations, LLM for text merge.
 
-**Preconditions:** brain was created from the PIVOTEX template; git is initialized; current working tree is clean (or user accepts a stash).
+**Phase 1 — run the script (deterministic):**
+```
+bash update-brain.sh      # Linux / macOS
+pwsh update-brain.ps1     # Windows
+```
+The script handles: working-tree check, upstream remote, fetch, version diff, protocol file checkout, `.claude/commands/` install, staging. It stops before touching `BRAIN.md` and prompts for confirmation before applying.
 
-1. Confirm with user: *"I'll fetch the latest PIVOTEX protocol and update protocol files here. Your data (`hippocampus/`, `cortex/`, `limbic/`, `sources/`, `dreams/`, `salience.md`) will not be touched. Continue? [y/N]"*
-2. **Working-tree check:** if `git status` shows uncommitted changes, ask user to stash or commit first; do not proceed.
-3. **Ensure upstream remote:** run `git remote get-url upstream` — if it fails or is missing, run `git remote add upstream https://github.com/pivoside/pivotex.git`.
-4. **Fetch:** `git fetch upstream main`.
-5. **Read versions:** local `VERSION` (treat missing as `unknown`) and `git show upstream/main:VERSION`.
-6. **Show what would change:**
-   ```
-   git diff upstream/main -- BRAIN.md CLAUDE.md .cursorrules AGENTS.md stubs/ VERSION
-   ```
-7. **BRAIN.md surgical merge:**
-   a. Extract user's Identity block from local `BRAIN.md` — lines from `## Identity` up to (but not including) the next `## ` header.
-   b. Read upstream `BRAIN.md` content via `git show upstream/main:BRAIN.md`.
-   c. In the fetched content, replace the `## Identity` block (same delimiter rule) with the user's preserved one.
-   d. Write the merged result over local `BRAIN.md`.
-8. **Wholly-replaceable protocol files** (no user customization expected by design):
-   ```
-   git checkout upstream/main -- CLAUDE.md .cursorrules AGENTS.md stubs/ VERSION
-   ```
-   Exception: if local diff against the *previous* upstream snapshot of any of these shows user edits, do NOT silently overwrite. Show the user their changes and ask `[k]eep yours / [u]pstream / [a]bort`.
-9. **Never touched, ever:**
-   `hippocampus/`, `cortex/`, `limbic/`, `sources/`, `dreams/`, `salience.md`, `archive/`, and any `cerebellum/modes/<custom>.md` not present in upstream.
-10. **Install slash commands (Claude Code):** if `stubs/claude-commands/` exists, create `.claude/commands/` and copy all `*.md` files from `stubs/claude-commands/` into it. This registers tab-completable `/pivotex-*` commands in Claude Code. Skip silently if the directory is missing.
-11. **Stage and review:** `git add -A` then show `git diff --staged` to the user.
-12. **Log to hippocampus:** append a one-line entry to `hippocampus/<today>.md`: *"Updated PIVOTEX protocol `<old-version>` → `<new-version>`. Files: `<list>`."*
-13. **On user confirmation:** `git commit -m "Update PIVOTEX protocol to <new-version>"`.
-    **On rejection:** run `git restore --staged .` then `git checkout -- .` (unstage and discard).
+**Phase 2 — BRAIN.md merge (your job as agent):**
+The script leaves `BRAIN.md` unstaged. You handle the text merge:
+
+1. Read the user's `## Identity` block from local `BRAIN.md` — lines from `## Identity` up to (but not including) the next `## ` header.
+2. Read upstream `BRAIN.md`: `git show upstream/main:BRAIN.md`.
+3. In the upstream content, replace the `## Identity` block with the user's preserved one.
+4. Write the merged result over local `BRAIN.md`.
+5. `git add BRAIN.md`
+6. Append to `hippocampus/<today>.md`: *"Updated PIVOTEX protocol `<old-version>` → `<new-version>`."*
+7. `git commit -m "Update PIVOTEX protocol to <new-version>"`
+
+**Never touched, ever:** `hippocampus/`, `cortex/`, `limbic/`, `sources/`, `dreams/`, `salience.md`, `archive/`, and any `cerebellum/modes/<custom>.md` not present in upstream.
 
 ## Conventions
 - **Cross-references:** `[[cortex/concepts/x.md]]` — works as link and prose.
