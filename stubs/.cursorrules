@@ -1,0 +1,5 @@
+Read <BRAIN_ROOT>/BRAIN.md before doing anything else, every session.
+Follow the protocol in that file. It is the agent's persistent brain.
+All memory writes go to paths under that brain root.
+
+# Replace <BRAIN_ROOT> with the absolute path to your PIVOTEX brain folder.

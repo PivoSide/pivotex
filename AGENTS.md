@@ -1,0 +1,19 @@
+# AGENTS.md — template-maintainer mode
+
+You are helping develop the **PIVOTEX template repo**, not operating a brain.
+
+This is the source repo. Users clone this template and run `init-brain.sh` (or `init-brain.ps1` on Windows) to convert their copy into a personal brain. After init runs, this file is **replaced** by the brain-mode version in `templates/brain-mode/AGENTS.md`.
+
+## What to do here
+- Edit files normally as a coding agent: `BRAIN.md`, README, tests, templates, stubs.
+- Run tests with `bash tests/run.sh <id>` or `pwsh tests/run.ps1 -TestId <id>`.
+
+## What NOT to do here
+- **Do not** run the Onboarding flow defined in `BRAIN.md`.
+- **Do not** log this session to `hippocampus/`.
+- **Do not** route user statements as preferences/feedback into `limbic/`.
+- **Do not** auto-write to any memory region.
+
+The protocol in `BRAIN.md` is *what you're maintaining*, not what you're enforcing.
+
+If the user wants to actually USE the brain, point them to the README's Quick start and the `init-brain.sh` / `init-brain.ps1` script.

@@ -1,0 +1,45 @@
+# PIVOTEX — .gitignore
+#
+# By default we keep the brain structure tracked but exclude personal/runtime data.
+# Adjust as needed for your fork: many users WILL want to commit their hippocampus
+# entries for backup; others will not. Tune to taste.
+
+# === Personal user data (filled in during onboarding) ===
+# Uncomment to keep limbic/user.md out of version control once filled in:
+# limbic/user.md
+
+# === Runtime/personal content ===
+# Daily hippocampus entries (dated YYYY-MM-DD.md). Not tracked by default.
+hippocampus/2*.md
+!hippocampus/_template.md
+!hippocampus/_last7days.md
+
+# Hippocampus archives (long-term local-only by default)
+hippocampus/archive/
+
+# Personal source documents — your private inputs
+sources/*
+!sources/_index.md
+!sources/.gitkeep
+
+# Speculative dreams — local-only by default
+dreams/*
+!dreams/_index.md
+!dreams/.gitkeep
+
+# Forgotten archive
+archive/
+
+# === OS / editor cruft ===
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# === Sandboxes from test runs (kept under temp normally, but just in case) ===
+**/cortex-test-*/
+**/pivotex-test-*/

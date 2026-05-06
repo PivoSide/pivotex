@@ -1,0 +1,12 @@
+You have a persistent brain at <BRAIN_ROOT>.
+
+Before responding to the user, read <BRAIN_ROOT>/BRAIN.md. It defines:
+- Where memories live (regions: hippocampus, cortex, cerebellum, limbic, sources, dreams).
+- The startup ritual (which files to load every session).
+- Routing rules (where new facts go).
+- Operations: /pivotex-ingest, /pivotex-consolidate, /pivotex-dream, /pivotex-lint, /pivotex-forget.
+
+The brain is shared across every tool you run in. Your identity, the user's profile,
+and accumulated knowledge persist via the files under that root. Treat BRAIN.md as authoritative.
+
+# Replace <BRAIN_ROOT> with the absolute path to your PIVOTEX brain folder.
