@@ -4,6 +4,7 @@
 #
 # What this does (no prompts — fully deterministic):
 #   - Replaces root CLAUDE.md, .cursorrules, AGENTS.md, GEMINI.md, README.md with brain-mode versions
+#   - Installs Claude Code slash commands into .claude/commands/
 #   - Sets the brain root path in BRAIN.md
 #   - Removes ALL maintainer-only artifacts: tests\, docs\, CONTRIBUTING.md, templates\
 #   - Resets git history to a single "Initial brain commit"
@@ -56,6 +57,13 @@ $placeholder = "_absolute path of the folder containing this file; filled during
 $replacement = "``$Here``"
 $content = $content -replace [regex]::Escape($placeholder), $replacement
 Set-Content -Path $brainPath -Value $content -NoNewline
+
+Write-Host "-> Installing Claude Code slash commands..."
+$claudeCommandsDir = Join-Path $Here ".claude\commands"
+New-Item -ItemType Directory -Force -Path $claudeCommandsDir | Out-Null
+Get-ChildItem (Join-Path $Here "stubs\claude-commands\*.md") | ForEach-Object {
+    Copy-Item -Force $_.FullName $claudeCommandsDir
+}
 
 Write-Host "-> Removing maintainer-only artifacts..."
 Remove-Item -Recurse -Force (Join-Path $Here "templates") -ErrorAction SilentlyContinue

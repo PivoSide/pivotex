@@ -4,6 +4,7 @@
 #
 # What this does (no prompts — fully deterministic):
 #   - Replaces root CLAUDE.md, .cursorrules, AGENTS.md, GEMINI.md with brain-mode versions
+#   - Installs Claude Code slash commands into .claude/commands/
 #   - Replaces README.md with the brain-mode user-facing version
 #   - Sets the brain root path in BRAIN.md
 #   - Removes ALL maintainer-only artifacts: tests/, docs/, CONTRIBUTING.md, templates/
@@ -56,6 +57,10 @@ PLACEHOLDER='_absolute path of the folder containing this file; filled during On
 ESCAPED_HERE=$(printf '%s' "$HERE" | sed -e 's|[\\/&]|\\&|g')
 sed -i.bak "s|${PLACEHOLDER}|\`${ESCAPED_HERE}\`|" "$HERE/BRAIN.md"
 rm -f "$HERE/BRAIN.md.bak"
+
+echo "-> Installing Claude Code slash commands..."
+mkdir -p "$HERE/.claude/commands"
+cp -f "$HERE"/stubs/claude-commands/*.md "$HERE/.claude/commands/"
 
 echo "-> Removing maintainer-only artifacts..."
 rm -rf "$HERE/templates"

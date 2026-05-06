@@ -161,10 +161,13 @@ The brain lives in one folder. Every tool gets a tiny stub pointing there.
 | Tool | Where the stub goes | File |
 |---|---|---|
 | Claude Code | `<project>/CLAUDE.md` (or global) | `stubs/CLAUDE.md` |
+| Claude Code slash commands | `<brain>/.claude/commands/` | `stubs/claude-commands/*.md` |
 | Gemini CLI | `<project>/GEMINI.md` | `stubs/GEMINI.md` |
 | Cursor | `<project>/.cursorrules` | `stubs/.cursorrules` |
 | Codex CLI / Copilot agents | `<project>/AGENTS.md` | `stubs/AGENTS.md` |
 | OpenAI API / custom agent | system prompt | `stubs/system-prompt.txt` |
+
+`init-brain.sh` installs the slash commands automatically. After activation, typing `/pivotex` in Claude Code and pressing Tab shows all six operations with autocomplete.
 
 Replace `<BRAIN_ROOT>` in each stub with the absolute path to your brain folder. Done.
 
