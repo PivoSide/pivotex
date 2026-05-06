@@ -2,6 +2,11 @@
 
 > A brain-shaped memory for AI agents. Plain markdown. Cross-platform. Ready to use.
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
+![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
+
 ## Summary
 
 PIVOTEX gives your AI agent a persistent brain that survives across tools, sessions, and platforms. It's not a database, not a vector store, not a framework — it's a folder of markdown files following a clear protocol that any agent can read, write, and learn from.
@@ -53,7 +58,7 @@ You never told it what to load. It loaded the right things because the cues, the
 
 ```bash
 # 1. Clone the template
-git clone https://github.com/<you>/pivotex.git ~/my-brain
+git clone https://github.com/PivoSide/pivotex.git ~/my-brain
 cd ~/my-brain
 
 # 2. Activate as a brain (one-time, deterministic)
