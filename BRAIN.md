@@ -144,9 +144,10 @@ Pull protocol updates from upstream into this brain without touching user data.
    Exception: if local diff against the *previous* upstream snapshot of any of these shows user edits, do NOT silently overwrite. Show the user their changes and ask `[k]eep yours / [u]pstream / [a]bort`.
 9. **Never touched, ever:**
    `hippocampus/`, `cortex/`, `limbic/`, `sources/`, `dreams/`, `salience.md`, `archive/`, and any `cerebellum/modes/<custom>.md` not present in upstream.
-10. **Stage and review:** `git add -A` then show `git diff --staged` to the user.
-11. **Log to hippocampus:** append a one-line entry to `hippocampus/<today>.md`: *"Updated PIVOTEX protocol `<old-version>` → `<new-version>`. Files: `<list>`."*
-12. **On user confirmation:** `git commit -m "Update PIVOTEX protocol to <new-version>"`.
+10. **Install slash commands (Claude Code):** if `stubs/claude-commands/` exists, create `.claude/commands/` and copy all `*.md` files from `stubs/claude-commands/` into it. This registers tab-completable `/pivotex-*` commands in Claude Code. Skip silently if the directory is missing.
+11. **Stage and review:** `git add -A` then show `git diff --staged` to the user.
+12. **Log to hippocampus:** append a one-line entry to `hippocampus/<today>.md`: *"Updated PIVOTEX protocol `<old-version>` → `<new-version>`. Files: `<list>`."*
+13. **On user confirmation:** `git commit -m "Update PIVOTEX protocol to <new-version>"`.
     **On rejection:** run `git restore --staged .` then `git checkout -- .` (unstage and discard).
 
 ## Conventions
